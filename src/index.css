@@ -1,0 +1,257 @@
+:root {
+    --bg-color: #1e1e2f; /* dark slate */
+    --nav-color: #2c2f48; /* deep navy */
+    --section-color: rgba(255, 255, 255, 0.05); /* light translucent white */
+    --section-hover-color: rgba(255, 255, 255, 0.1); /* slightly brighter on hover */
+    --text-color: #f5f6fa; /* soft white */
+    --border-color: #4dabf7; /* sky blue accent */
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: var(--bg-color);
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    border: 2px solid var(--border-color);
+    border-radius: 25px;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    color: var(--text-color);
+    background-color: var(--nav-color);
+    justify-content: space-between;
+}
+
+.nav-buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.nav-buttons button{
+    color: white;
+    font-size: 2rem;
+    background-color: transparent;
+    border: 0px;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0px 10px;
+    transition: 0.4s;
+}
+
+.searchbar-div{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid var(--nav-color);
+    border-radius: 10px;
+    transition: 0.4s;
+}
+
+.searchbar-div:hover, .date-div:hover{
+    border: 1px solid black;
+    box-shadow: 3px 3px 5px black;
+    background-color: var(--border-color);
+}
+
+.date-div{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid var(--nav-color);
+    border-radius: 10px;
+    transition: 0.4s;
+}
+
+.searchbar {
+    font-size: 1.5rem;
+    width: 0;
+    opacity: 0;
+    padding: 0;
+    border: none;
+    transition: 0.4s;
+    overflow: hidden; 
+}
+
+.searchbar.open {
+    font-size: 1.5rem;
+    width: 300px; 
+    opacity: 1;
+    padding: 4px 8px;
+    border-radius: 10px;
+}
+
+.dateInput{
+    font-size: 1.5rem;
+    width: 0;
+    opacity: 0;
+    padding: 0;
+    border: none;
+    transition: 0.4s;
+    overflow: hidden;
+}
+
+.dateInput.open {
+    font-size: 1.2rem;
+    width: 200px; 
+    opacity: 1;
+    padding: 4px 8px;
+    border-radius: 10px;
+}
+
+.three-section-area{
+    color: var(--text-color);
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 55vw 44vw;
+    grid-template-rows: 400px 300px;
+    gap: 1vw;
+    grid-template-areas:
+    "sectionOne sectionTwo"
+    "sectionOne sectionThree";
+}
+
+.section-one{
+    grid-area: sectionOne;
+}
+
+.section-two{
+    grid-area: sectionTwo;
+}
+
+.section-three{
+    grid-area: sectionThree;
+}
+
+.section-one, .section-two, .section-three{
+    padding: 10px;
+    border: 2px solid var(--border-color);
+    border-radius: 25px;
+    background-color: var(--section-color);
+    transition: 0.2s;
+    overflow: auto;
+    text-align: center;
+}
+
+
+.section-one:hover, .section-two:hover, .section-three:hover{
+    background-color: var(--section-hover-color);
+}
+
+.modal-backdrop {
+    position: fixed;
+    background: rgba(0,0,0,0.5);
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background: var(--nav-color);
+    border: 2px solid var(--border-color);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.modal-mini-container{
+    border-top: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color);
+    box-shadow: 2px 2px 2px black;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.3rem;
+    padding: 20px;
+    margin: 10px;
+    width: auto;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.modal-mini-container input, select{
+    padding: 4px 8px;
+    border-radius: 10px;
+    border: none;
+}
+
+.modal-content button, .three-section-area button{
+    margin-top: 10px;
+    color: white;
+    border: 1px solid var(--nav-color);
+    font-size: 1.5rem;
+    background-color: transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0px 10px;
+    transition: 0.4s;
+    width: fit-content;
+}
+
+.modal-content button:hover, .three-section-area button:hover{
+    box-shadow: 3px 3px 5px black;
+    background-color: var(--border-color);
+    border: 1px solid black;
+}
+
+ul{
+    list-style: none;
+}
+
+.expenses-list li{
+    display: flex;
+    justify-content: space-between; /* space between text and buttons */
+    align-items: center;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.expenses-list li span{
+    flex: 1;
+}
+
+.expenses-list li:hover{
+    background-color: var(--section-hover-color);
+}
+
+.expenses-list button{
+    margin-left: 8px;
+    padding: 4px 10px;
+    font-size: 1.1rem;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: var(--nav-color);
+    color: white;
+    transition: 0.4s;
+}
+
+
+
+.section-three h1{
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.section-three h4{
+    text-align: left;
+    font-size: 1.5rem;
+    line-height: 1.6;
+}
