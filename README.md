@@ -10,12 +10,10 @@ A React-based expense tracking application with data visualization and spending 
 - Doughnut chart visualization (spent vs earned)
 - Smart spending recommendations
 - Responsive component architecture
-
-🚧 **Not Yet Implemented:**
 - Search functionality
 - Date filtering
-- Category filtering
-- Filter button functionality
+
+🚧 **Not Yet Implemented:**
 - Local Storage
 
 ## Components
@@ -46,4 +44,4 @@ npm start
 
 ## Current Status
 
-Basic functionality is complete. This serves as the foundation for additional features like search, filtering, and date-based expense management.
+Basic functionality is complete. I will add local storage later.
