@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useMemo} from "react";
 import Navigation from "./Navigation";
 import ExpensesSection from "./ExpensesSection";
 import ChartSection from "./ChartSection";
@@ -7,11 +7,32 @@ import RecommendationsSection from "./RecommendationsSection";
 function MyComponent(){
     const [searchbar, setSearchbar] = useState(false);
     const [dateInput, setDateInput] = useState(false);
-    const [selectedDate, setSelectedDate] = useState("");
+    const [selectedDate, setSelectedDate] = useState(() => {
+        const x = new Date();
+        const year = x.getFullYear()
+        const month = x.getMonth() + 1;
+        const paddedMonth = String(month).padStart(2, "0");
+        return `${year}-${paddedMonth}`;
+    });   
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [expenses, setExpenses] = useState([]);
     const [balance, setBalance] = useState(0);
     const [editingExpense, setEditingExpense] = useState(null);
+    const [query, setQuery] = useState("");
+
+    const expensesForSelectedDate = useMemo(() => {
+        return expenses.filter(e => e.date === selectedDate) 
+    }, [expenses, selectedDate])
+    
+    const filteredExpenses = useMemo(() => { 
+        return expensesForSelectedDate.filter(expense => {  
+            return expense.title.toLowerCase().includes(query.toLowerCase())  
+        })
+    }, [expenses, query, selectedDate])
+    
+    const balanceForSelectedDate = useMemo(() => {
+        return expensesForSelectedDate.reduce((acc, exp) => acc + exp.amount, 0);
+    }, [expensesForSelectedDate, selectedDate]);
 
     function addExpense(newExpense){
         if (!newExpense.title || !newExpense.amount) {
@@ -24,6 +45,7 @@ function MyComponent(){
             title: newExpense.title,
             amount: Number(newExpense.amount),
             category: newExpense.category || "Uncategorized",
+            date: selectedDate
         }
 
         setBalance(b => b += expenseToAdd.amount);
@@ -126,6 +148,8 @@ function MyComponent(){
                 selectedDate={selectedDate}
                 onDateChange={handleDateChange}
                 formatDate={formatDate}
+                query={query}
+                onQueryChange={setQuery}
             />
             <div className="three-section-area">
                 <ExpensesSection 
@@ -139,15 +163,20 @@ function MyComponent(){
                     editingExpense={editingExpense}
                     setEditingExpense={setEditingExpense}
                     handleSave={handleSave}
+                    filteredExpenses={filteredExpenses}
+                    balanceForSelectedDate={balanceForSelectedDate}
                 />
                 <ChartSection 
                     expenses={expenses}
                     balance={balance}
+                    expensesForSelectedDate={expensesForSelectedDate}
+                    balanceForSelectedDate={balanceForSelectedDate}
                 />
                 <RecommendationsSection 
                     expenses={expenses}
                     balance={balance}
                     getRecommendations={getRecommendations}
+                    expensesForSelectedDate={expensesForSelectedDate}
                 />
             </div>
         </div>

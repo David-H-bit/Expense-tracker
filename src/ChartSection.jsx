@@ -1,12 +1,12 @@
 import React from "react";
 import MoneyChart from "./MoneyChart";
 
-function ChartSection({expenses, balance}) {
+function ChartSection({expensesForSelectedDate, balanceForSelectedDate}) {
     return (
         <section className="section-two">
             <div>
-                <MoneyChart expenses={expenses}/>
-                <h2 style={{margin: "10px 0px"}}>Balance: ${balance}</h2>
+                <MoneyChart expenses={expensesForSelectedDate}/>
+                <h2 style={{margin: "10px 0px"}}>Balance: ${balanceForSelectedDate}</h2>
             </div>
         </section>
     );
