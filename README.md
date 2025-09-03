@@ -4,7 +4,7 @@ A React-based expense tracking application with data visualization and spending 
 
 ## Features
 
-✅ **Implemented:**
+**Implemented:**
 - Add/edit/delete expenses
 - Real-time balance calculation
 - Doughnut chart visualization (spent vs earned)
@@ -13,7 +13,7 @@ A React-based expense tracking application with data visualization and spending 
 - Search functionality
 - Date filtering
 
-🚧 **Not Yet Implemented:**
+**Not Implemented:**
 - Local Storage
 
 ## Components
@@ -42,6 +42,3 @@ npm install
 npm start
 ```
 
-## Current Status
-
-Basic functionality is complete. I will add local storage later.
